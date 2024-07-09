@@ -1,0 +1,273 @@
+{
+	"info": {
+		"_postman_id": "c18618df-c657-4a39-b33e-e752a14cf760",
+		"name": "conduit-flask",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "13838077",
+		"_collection_link": "https://grey-crater-436369.postman.co/workspace/NNN-MUSIC~d67b3386-dcc5-49b2-967d-f28e711ba9d5/collection/13838077-c18618df-c657-4a39-b33e-e752a14cf760?action=share&source=collection_link&creator=13838077"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\" : \"couchbase-user\",\n    \"password\" : \"couchbase_pass\",\n    \"email\" : \"couchbase_user@test.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8080/users/"
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\" : \"couchbase_pass\",\n    \"email\" : \"couchbase_user@test.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8080/users/login"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Current User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"password\" : \"couchbase_pass\",\n    \"email\" : \"couchbase_user@test.com\"\n}"
+						},
+						"url": "http://127.0.0.1:8080/users/get-current-user"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Articles",
+			"item": [
+				{
+					"name": "Create an articles",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "Authorization",
+								"value": "Token {{token}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"title\": \"How to train your dragon\",\n        \"description\": \"Ever wonder how?\",\n        \"body\": \"Very carefully.\",\n        \"tagList\": [\n            \"training\",\n            \"dragons\"\n        ]\n    }\n"
+						},
+						"url": "http://127.0.0.1:8080/articles"
+					},
+					"response": []
+				},
+				{
+					"name": "All Articles",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMmU4MjBkYjUtMzM3Yi00MTQ4LWFmODAtYzNmMTRhNDIxN2ZkIiwiZXhwIjoxNzA5Nzg2ODU3fQ.le7CRAhjHmKOHkwC_8SAGLmHwM-pmtKnMnDc0hNcU0U"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"title\": \"How to train your dragon\",\n        \"description\": \"Ever wonder how?\",\n        \"body\": \"Very carefully.\",\n        \"tagList\": [\n            \"training\",\n            \"dragons\"\n        ]\n    }\n"
+						},
+						"url": "http://127.0.0.1:8080/articles"
+					},
+					"response": []
+				},
+				{
+					"name": "Article by slug",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://127.0.0.1:8080/articles/how-to-train-your-dragon"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Comment",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMmU4MjBkYjUtMzM3Yi00MTQ4LWFmODAtYzNmMTRhNDIxN2ZkIiwiZXhwIjoxNzEwMTkxNDk3fQ.cKl2GqjzDYhk-iFqYFQra83DGpbvHissDLh00LgWD3Y",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"article_id\" : \"731d8392-84d2-4c02-9cc3-570ef8186aae\",\n    \"body\" : \"wow, its looking greate\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://127.0.0.1:8080/comments/"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Comments ",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMmU4MjBkYjUtMzM3Yi00MTQ4LWFmODAtYzNmMTRhNDIxN2ZkIiwiZXhwIjoxNzEwMTkxNDk3fQ.cKl2GqjzDYhk-iFqYFQra83DGpbvHissDLh00LgWD3Y"
+							}
+						],
+						"url": "http://127.0.0.1:8080/comments/731d8392-84d2-4c02-9cc3-570ef8186aae"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Comment",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMmU4MjBkYjUtMzM3Yi00MTQ4LWFmODAtYzNmMTRhNDIxN2ZkIiwiZXhwIjoxNzEwMTkzNDg4fQ.7YlfYU0Onzhg0h9WsgGPgXHoI_4FUbvBcVJWGhixqm0"
+							}
+						],
+						"url": "http://127.0.0.1:8080/comments/967d093c-70fe-4a0d-ac28-c9898247cd65"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Article",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8080/articles?skip=0&limit=10&tag_list=training",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"articles"
+							],
+							"query": [
+								{
+									"key": "skip",
+									"value": "0"
+								},
+								{
+									"key": "limit",
+									"value": "10"
+								},
+								{
+									"key": "tag_list",
+									"value": "training"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Profile",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Article",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNDBlMTFjZWQtNGU0OC00Y2RjLTk5Y2YtNDdmNjU2YjM4ZGJjIiwiZXhwIjoxNzEwNzUyNjI0fQ.1T2r3BWiuyLMeZXmRdNdn5DUqG1wubsAJ4Tk9b434T0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"article_id\" : \"a5d2cd0a-a2d1-4b3f-9732-e802a7ff5848\"\n}"
+						},
+						"url": "http://127.0.0.1:8080/articles/delete"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
